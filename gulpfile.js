@@ -4,6 +4,8 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     compass = require('gulp-compass'),
     connect = require('gulp-connect'),
+    uglify = require('gulp-uglify'),
+    gulpif = require('gulp-if'),
     concat = require('gulp-concat');
 
 var env,
@@ -15,7 +17,19 @@ var env,
     outputDir,
     sassStyle;
 
-env = process.env.NODE_ENV || 'development';
+
+
+if ( process.env.NODE_ENV === 'development'){
+	env = 'development';
+
+} else {
+	env = 'production';
+}
+
+gulp.task('log', function() {
+	gutil.log('This is what the env variable is set as: ' + env)
+	gutil.log('This is what the NODE_ENV is set as: ' + process.env.NODE_ENV)
+});
 
 if (env==='development') {
   outputDir = 'builds/development/';
@@ -50,6 +64,7 @@ gulp.task('js', function() {
 	gulp.src(jsSources)
 		.pipe(concat('script.js'))
 		.pipe(browserify())
+		.pipe(gulpif(env === 'production', uglify()))
 		.pipe(gulp.dest(outputDir + 'js'))
 		.pipe(connect.reload())
 
@@ -99,4 +114,4 @@ gulp.task('json', function() {
     .pipe(connect.reload())
 });
 
-gulp.task('default', ['html', 'coffee', 'js', 'compass', 'connect', 'watch']);
+gulp.task('default', ['log', 'html', 'coffee', 'js', 'compass', 'connect', 'watch']);
