@@ -1,0 +1,10 @@
+{
+  "name": "workflowsv3",
+  "version": "1.0.0",
+  "description": "\"This is a redo to make sure I know how to create a workflow correctly\"",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "author": "Brett Cunningham"
+}
