@@ -4,11 +4,12 @@
   "description": "\"This is a redo to make sure I know how to create a workflow correctly\"",
   "repository": {
     "type": "git",
-    "url": "?.git"
+    "url": "https://github.com/MrSankofa/workflowsv3.git"
   },
   "author": "Brett Cunningham",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
     "gulp-util": "^3.0.7"
   }
 }
